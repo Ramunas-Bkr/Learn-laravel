@@ -14,7 +14,8 @@
         @include('incl.hero')
     @endif
     <div class="container mt-5">
-        <div class="row">
+        @include('incl.messages')
+        <div class="row mt-3">
             <div class="col-10">
                 @yield('content')
             </div>

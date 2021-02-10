@@ -27,8 +27,41 @@ class ContactController extends Controller
         return redirect()->route('home')->with('success', 'Pranešimas buvo išsiųstas');
     }
 
+    public function editMessageSubmit($id, ContactRequest $req)
+    {
+        $contacts = Contacts::find($id);
+        $contacts->name = $req->input('name');
+        $contacts->email = $req->input('email');
+        $contacts->subject = $req->input('subject');
+        $contacts->message = $req->input('message');
+
+        $contacts->save();
+
+        return redirect()->route('one-message', $id)->with('success', 'Pranešimas buvo atnaujintas');
+    }
+
     public function allData()
     {
-       return view('messages', ['messages', 'data' => Contacts::all()]);
+        $contact = new Contacts;
+        return view('messages', ['data' => $contact->all()]);
+    }
+
+    public function getOneMessage($id)
+    {
+        $contact = new Contacts;
+        return view('one-message', ['data' => $contact->find($id)]);
+    }
+
+    public function editMessage($id)
+    {
+        $contact = new Contacts;
+        return view('update-message', ['data' => $contact->find($id)]);
+    }
+
+    public function deleteMessage($id)
+    {
+        $contacts = Contacts::find($id);
+        $contacts->delete();
+        return redirect()->route('contacts-data')->with('success', 'Pranešimas buvo ištrintas');
     }
 }

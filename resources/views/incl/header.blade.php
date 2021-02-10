@@ -15,6 +15,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('contacts')}}">Contacts</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('contacts-data')}}">Messages</a>
+          </li>
           </li>
         </ul>
       </div>

@@ -19,4 +19,5 @@ Route::get('/pricing', function () {
     return view('pricing');
 })->name('pricing');
 
+Route::get('/contacts/all', [ContactController::class, 'allData'])->name('contacts-data');
 Route::post('/contacts/submit', [ContactController::class, 'submitContactForm'])->name('contacts-form');

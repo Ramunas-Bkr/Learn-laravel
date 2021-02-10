@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contacts;
 
-class ContactController extends Controller {
-    public function submitContactForm(ContactRequest $req) {
+class ContactController extends Controller
+{
+    public function submitContactForm(ContactRequest $req)
+    {
         // $validation = $req -> validate([
         //     'subject' => 'required|min:5|max:50',
         //     'message' => 'required|min:10',
@@ -23,8 +25,10 @@ class ContactController extends Controller {
         $contacts->save();
 
         return redirect()->route('home')->with('success', 'Pranešimas buvo išsiųstas');
+    }
 
+    public function allData()
+    {
+       return view('messages', ['messages', 'data' => Contacts::all()]);
     }
 }
-
-
